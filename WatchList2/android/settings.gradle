@@ -1,0 +1,3 @@
+rootProject.name = 'WatchList2'
+
+include ':app'
