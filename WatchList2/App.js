@@ -13,6 +13,7 @@ const App = StackNavigator({
 
   HomeScreen: { screen : HomeScreen },
   SearchTabNavigator: { screen : SearchTabNavigator }
+
 })
 
 export default App;
