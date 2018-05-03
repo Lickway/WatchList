@@ -4,13 +4,24 @@ import {
   Text,
   StyleSheet,
 } from 'react-native';
+import { Container, Content } from 'native-base';
+import SearchBar from "../SearchBar";
+
 
 export default class SearchTab extends Component {
+
+  static navigationOptions= {
+    header: null
+  }
+
   render() {
     return (
-      <View>
-        <Text>Search</Text>
-      </View>
+      <Container>
+        <SearchBar />
+        <Content>
+
+        </Content>
+      </Container>
     );
   }
 }
