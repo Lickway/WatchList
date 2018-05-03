@@ -17,7 +17,11 @@ export default class SearchBar extends Component {
         <Item>
           <Icon name='search'/>
           <Input
-
+            placeholder="Search for a movie"
+            onChangeText={this.props.onChangeText}
+            // https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+            returnKeyType="search"
+            onSubmitEditing={this.props.searchMovie}
           />
         </Item>
 
