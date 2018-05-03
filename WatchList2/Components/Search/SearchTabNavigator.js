@@ -22,15 +22,22 @@ const SearchTabNavigator = TabNavigator({
       <Footer>
         <FooterTab>
           <Button
+            //https://stackoverflow.com/questions/41224418/react-native-add-active-class-when-push-the-button
+            active={props.navigationState.index === 0}
+            onPress={() => props.navigation.navigate('SearchTab')}
             vertical
+
           >
-            <Icon name='movie' />
+            <Icon name='film' />
             <Text>
               Search
             </Text>
 
           </Button>
           <Button
+            active={props.navigationState.index === 1}
+            onPress={() => props.navigation.navigate('ListTab')}
+
             vertical
           >
             <Icon name='list' />
