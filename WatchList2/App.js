@@ -9,6 +9,8 @@ import { StackNavigator } from "react-navigation";
 import HomeScreen from "./Components/Home/HomeScreen";
 import SearchTabNavigator from "./Components/Search/SearchTabNavigator";
 
+console.ignoredYellowBox = ['Remote debugger'];
+
 const App = StackNavigator({
 
   HomeScreen: { screen : HomeScreen },

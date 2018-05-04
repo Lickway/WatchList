@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Container, Content } from 'native-base';
 import SearchBar from "../SearchBar";
+import SearchBody from "../SearchBody";
 import axios from 'axios';
 
 
@@ -14,7 +15,8 @@ export default class SearchTab extends Component {
 
   state = {
     movieSearch: '',
-    movieData: []
+    movieData: {},
+    movieFound: false
   }
 
   searchMovie = () => {
@@ -30,9 +32,32 @@ export default class SearchTab extends Component {
       }
     })
       .then((response) => {
-      console.log(response.data);
-    });
+        let data = response.data.results[0]
+        console.log(data);
+        if (data) {
+          this.setState({
+            movieData: data,
+            movieFound: true
+          })
+        }
+    }).catch((error) => {
+      this.setState({
+        movieFound:false
+      })
+    })
+  }
 
+  renderContent = () => {
+    //location name {this.state.movieData.locations[0].display_name}
+    //location url {this.state.movieData.locations[0].url}
+    //movie name {this.state.movieData.name}
+    //movie picture {this.state.movieData.picture}
+    if(this.state.movieFound) {
+      return <SearchBody movieData={this.state.movieData} />
+    }
+    else {
+      console.log("Movie not found");
+    }
   }
 
   static navigationOptions= {
@@ -48,7 +73,7 @@ export default class SearchTab extends Component {
           searchMovie={this.searchMovie}
         />
         <Content>
-
+          {this.renderContent()}
         </Content>
       </Container>
     );
