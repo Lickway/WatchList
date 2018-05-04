@@ -3,9 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  Button
+  Button,
+  Image
 } from 'react-native';
-import { Content, ListItem } from "native-base";
+import { Content, ListItem, List } from "native-base";
 
 
 export default class SearchBody extends Component {
@@ -13,59 +14,92 @@ export default class SearchBody extends Component {
 
     const movieData = this.props.movieData
 
+    let movieItem = movieData.map((movie, i) => {
+    console.log('movie name!!!!', movie.name)
+      return(
+        <List key={i}>
+          { movie.picture ? (
+            <ListItem itemDivider style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              <Image source={{ uri: movie.picture }} style={{ height: 250, width: 500 }} />
+            </ListItem>
+          )
+          :
+          (
+            <ListItem itemDivider>
+              <Text>No Image Available</Text>
+            </ListItem>
+          )
+
+          }
+          <ListItem itemDivider>
+            <Text>Title:</Text>
+          </ListItem>
+          <ListItem>
+            <View>
+              <Text>{movie.name}</Text>
+            </View>
+            <View>
+              <Button onPress={() => this.addToList(movie.name)} title="+My List"></Button>
+            </View>
+          </ListItem>
+          <ListItem itemDivider>
+            <Text>Available Here:</Text>
+          </ListItem>
+          {movie.locations.map((location, i )=> {
+            console.log(location.display_name);
+            return(
+              <ListItem key={i}>
+                <Text>{location.display_name}</Text>
+              </ListItem>
+            )
+          })}
+
+        </List>
+    )})
+
     return (
       <Content>
-        <ListItem itemDivider style={{ flexDirection: 'row', justifyContent: 'center' }}>
+        {movieItem}
+        {/* { movieData.picture ? (
+          <ListItem itemDivider style={{ flexDirection: 'row', justifyContent: 'center' }}>
+            <Image source={{ uri: movieData.picture }} style={{ height: 250, width: 500 }} />
+          </ListItem>
+          )
+          :
+          (
+          <ListItem itemDivider>
+            <Text>No Image Available</Text>
+          </ListItem>
+          )
+          }
 
-          <Image source={{ uri: movieData.large }} style={{ height: 200, width: 200 }} />
-
-        </ListItem>
-        <ListItem itemDivider>
+          <ListItem itemDivider>
           <Text>Title</Text>
-        </ListItem>
-        <ListItem>
+          </ListItem>
+          <ListItem>
           <View>
             <Text>{movieData.name}</Text>
           </View>
           <View>
             <Button onPress={() => this.addToList(movieData.name)} title="+My List"></Button>
           </View>
-        </ListItem>
-        <ListItem itemDivider>
-          <Text>Category</Text>
-        </ListItem>
-        <ListItem >
-          <Text>{movieData.style.category.name}</Text>
-        </ListItem>
+          </ListItem>
+          <ListItem itemDivider>
+          <Text>Locations</Text>
+          </ListItem>
 
-        <ListItem itemDivider>
-          <Text>Description</Text>
-        </ListItem>
-        <ListItem >
-          <Text>{movieData.description}</Text>
-        </ListItem>
-        <ListItem itemDivider>
-          <Text>Rating</Text>
-        </ListItem>
-        <ListItem >
-          <Text>{movieData.abv}</Text>
-        </ListItem>
-        <ListItem itemDivider>
-          <Text>Is is Organic?</Text>
-        </ListItem>
-        <ListItem>
-          <Text> {movieData.isOrganic == 'Y' ? 'Yes' : 'No'} </Text>
-        </ListItem>
-        <ListItem itemDivider>
-          <Text>
-            <Text> Availablity</Text>
-          </Text>
-        </ListItem>
-        <ListItem>
-          <Text>{movieData.available.description ? movieData.available.description : 'No info'}</Text>
-        </ListItem>
-      </List>
+
+          {movieData.locations.map((location, i )=> {
+          console.log(location.display_name);
+          return(
+            <ListItem key={i}>
+          <Text>{location.display_name}</Text>
+            </ListItem>
+          )
+        })} */}
+
       </Content>
+
     );
   }
 }

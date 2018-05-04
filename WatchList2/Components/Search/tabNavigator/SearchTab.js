@@ -32,8 +32,8 @@ export default class SearchTab extends Component {
       }
     })
       .then((response) => {
-        let data = response.data.results[0]
-        console.log(data);
+        let data = response.data.results
+        console.log('search data', data);
         if (data) {
           this.setState({
             movieData: data,
