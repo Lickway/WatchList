@@ -51,7 +51,7 @@ addToList = async(movieName) => {
               <Text>{movie.name}</Text>
             </View>
             <View>
-              <Button onPress={() => this.addToList(movie.name)} title="+My List"></Button>
+              <Button onPress={() => this.addToList(movie.name)} title="👀"></Button>
             </View>
           </ListItem>
           <ListItem itemDivider>

@@ -31,7 +31,7 @@ const App = StackNavigator({
   SearchTabNavigator: { screen : SearchTabNavigator }
 
 },{
-  initialRouteName: 'HomeScreen'
+  initialRouteName: 'Authentication'
 })
 
 export default App;

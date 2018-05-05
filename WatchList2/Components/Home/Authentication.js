@@ -35,15 +35,17 @@ export default class Authentication extends Component {
   loginUser = (email, password) => {
     try{
       firebase.auth().signInWithEmailAndPassword(email, password).then(function (user){
-        this.setState({
-          loggedIn: true
-        }
-        )
+        console.log(user);
       })
     }
     catch(error){
       console.log(error.toString());
     }
+  }
+
+  loginButtonPress = () => {
+    this.loginUser(this.state.email, this.state.password);
+    this.props.navigation.navigate("SearchTabNavigator")
   }
 
   render() {
@@ -60,7 +62,7 @@ export default class Authentication extends Component {
 
           </Item>
           <Item floatingLabel>
-            <Label>Passwrod</Label>
+            <Label>Password</Label>
             <Input
               secureTextEntry={true}
               autoCorrect={false}
@@ -73,7 +75,8 @@ export default class Authentication extends Component {
             full
             rounded
             success
-            onPress={() => this.loginUser(this.state.email, this.state.password)}
+            onPress={() => this.loginButtonPress()}
+            // onPress={() => this.loginUser(this.state.email, this.state.password)}
           >
             <Text style={styles.buttonText}>Login</Text>
           </Button>
