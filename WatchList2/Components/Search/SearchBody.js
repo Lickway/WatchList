@@ -7,9 +7,21 @@ import {
   Image
 } from 'react-native';
 import { Content, ListItem, List } from "native-base";
+import * as firebase from "firebase";
 
 
+//https://www.youtube.com/watch?v=WsZH-YG_JL4
+let currentUser
 export default class SearchBody extends Component {
+
+addToList = async(movieName) => {
+  currentUser = await firebase.auth().currentUser
+  let databaseRef = await firebase.database().ref(currentUser.uid).child('list').push()
+  databaseRef.set({
+    name: movieName
+  })
+}
+
   render() {
 
     const movieData = this.props.movieData
@@ -60,43 +72,6 @@ export default class SearchBody extends Component {
     return (
       <Content>
         {movieItem}
-        {/* { movieData.picture ? (
-          <ListItem itemDivider style={{ flexDirection: 'row', justifyContent: 'center' }}>
-            <Image source={{ uri: movieData.picture }} style={{ height: 250, width: 500 }} />
-          </ListItem>
-          )
-          :
-          (
-          <ListItem itemDivider>
-            <Text>No Image Available</Text>
-          </ListItem>
-          )
-          }
-
-          <ListItem itemDivider>
-          <Text>Title</Text>
-          </ListItem>
-          <ListItem>
-          <View>
-            <Text>{movieData.name}</Text>
-          </View>
-          <View>
-            <Button onPress={() => this.addToList(movieData.name)} title="+My List"></Button>
-          </View>
-          </ListItem>
-          <ListItem itemDivider>
-          <Text>Locations</Text>
-          </ListItem>
-
-
-          {movieData.locations.map((location, i )=> {
-          console.log(location.display_name);
-          return(
-            <ListItem key={i}>
-          <Text>{location.display_name}</Text>
-            </ListItem>
-          )
-        })} */}
 
       </Content>
 

@@ -9,6 +9,7 @@ import {
 
 import { Button } from "native-base";
 let logoPhoto = require('../../assets/HomeScreen/MovieListLogo.jpg')
+import * as firebase from "firebase";
 
 class HomeScreen extends Component {
 
@@ -21,7 +22,7 @@ static navigationOptions= {
       <View style={styles.homeScreenView}>
 
         <View style={styles.logoView}>
-          <Image source={logoPhoto} style={styles.logoPhoto}/>
+          <Image source={logoPhoto} style={styles.logoPhoto} />
         </View>
 
         <Button
@@ -38,22 +39,22 @@ static navigationOptions= {
 const styles = StyleSheet.create({
   homeScreenView: {
     flex: 1,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    backgroundColor: 'white'
   },
   searchButtonText: {
     color: 'white'
   },
   logoPhoto: {
     flex: 1,
-    height: null,
-    width: null
+    height: 100,
+    width: 400
   },
   logoView: {
-    position: 'absolute',
     top: 0,
     left: 0,
-    height: '100%',
-    width: '100%'
+    height: '80%',
+    width: '80%'
   }
 })
 

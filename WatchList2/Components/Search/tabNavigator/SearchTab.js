@@ -19,6 +19,15 @@ export default class SearchTab extends Component {
     movieFound: false
   }
 
+  componentDidMount(){
+    if(this.props.navigation.state.params !== undefined)
+    {
+      this.setState({
+        movieSearch: this.props.navigation.state.params.movieName
+      }, () => this.searchMovie())
+    }
+  }
+
   searchMovie = () => {
     Keyboard.dismiss()
     const movieName = this.state.movieSearch.toLowerCase();

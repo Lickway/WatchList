@@ -8,6 +8,7 @@ import {
 import { StackNavigator } from "react-navigation";
 import HomeScreen from "./Components/Home/HomeScreen";
 import SearchTabNavigator from "./Components/Search/SearchTabNavigator";
+import Authentication from "./Components/Home/Authentication";
 import * as firebase from "firebase";
 
 const firebaseConfig = {
@@ -20,10 +21,12 @@ const firebaseConfig = {
 }
 firebase.initializeApp(firebaseConfig);
 
+
 console.ignoredYellowBox = ['Remote debugger'];
 
 const App = StackNavigator({
 
+  Authentication: { screen : Authentication },
   HomeScreen: { screen : HomeScreen },
   SearchTabNavigator: { screen : SearchTabNavigator }
 
