@@ -41,9 +41,16 @@ export default class ListTab extends Component {
   }
 
   selectCheckBox = () =>{
-    this.setState({
-      checked: true
-    })
+    if(this.state.checked === false) {
+      this.setState({
+        checked: true
+      })
+    } else {
+      this.setState({
+        checked: false
+      })
+    }
+
   }
 
   render() {
@@ -58,8 +65,8 @@ export default class ListTab extends Component {
               //   onPress={() => this.props.navigation.navigate("SearchTabNavigator",
               //     {movieName:data.val().name})}>
               <ListItem>
-                <CheckBox checked={false} color="blue" onPress={() => this.props.selectCheckBox()}/>
-                <Text onPress={() => this.props.navigation.navigate("SearchTabNavigator",
+                <CheckBox style={styles.checkbox} checked={this.state.checked} color="blue" onPress={() => this.selectCheckBox()}/>
+                <Text style={styles.listText} onPress={() => this.props.navigation.navigate("SearchTabNavigator",
                   {movieName:data.val().name})}>{data.val().name}</Text>
               </ListItem>
             }
@@ -74,5 +81,11 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
     backgroundColor: "white"
+  },
+  checkbox: {
+    margin: 5
+  },
+  listText: {
+    marginLeft: 10
   }
 })
