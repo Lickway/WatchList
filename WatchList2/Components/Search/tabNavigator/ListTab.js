@@ -6,7 +6,7 @@ import {
   ListView
 } from 'react-native';
 import * as firebase from "firebase";
-import { Container, Content, ListItem } from "native-base";
+import { Container, Content, ListItem, CheckBox } from "native-base";
 
 const data = [];
 const currentUser = ""
@@ -15,9 +15,11 @@ export default class ListTab extends Component {
 
   constructor(props){
     super(props)
+    //firebase specific checking to see if DB is changing
     this.ds = new ListView.DataSource({rowHasChanged:(r1, r2) => r1 !== r2})
     this.state = {
-      listViewData: data
+      listViewData: data,
+      checked: false
     }
   }
 
@@ -38,6 +40,12 @@ export default class ListTab extends Component {
     })
   }
 
+  selectCheckBox = () =>{
+    this.setState({
+      checked: true
+    })
+  }
+
   render() {
     return (
       <Container style={styles.listContainer}>
@@ -46,10 +54,13 @@ export default class ListTab extends Component {
             enableEmptySections
             dataSource={this.ds.cloneWithRows(this.state.listViewData)}
             renderRow={data =>
-              <ListItem
-                onPress={() => this.props.navigation.navigate("SearchTabNavigator",
-                  {movieName:data.val().name})}>
-                <Text>{data.val().name}</Text>
+              // <ListItem
+              //   onPress={() => this.props.navigation.navigate("SearchTabNavigator",
+              //     {movieName:data.val().name})}>
+              <ListItem>
+                <CheckBox checked={false} color="blue" onPress={() => this.props.selectCheckBox()}/>
+                <Text onPress={() => this.props.navigation.navigate("SearchTabNavigator",
+                  {movieName:data.val().name})}>{data.val().name}</Text>
               </ListItem>
             }
           />

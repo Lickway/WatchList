@@ -27,7 +27,7 @@ static navigationOptions= {
 
         <Button
           block={true}
-          onPress={() => this.props.navigation.navigate('SearchTabNavigator')}
+          onPress={() => this.props.navigation.navigate('Authentication')}
         >
           <Text style={styles.searchButtonText}>Search Movies</Text>
         </Button>

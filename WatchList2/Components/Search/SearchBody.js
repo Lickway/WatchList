@@ -27,7 +27,6 @@ addToList = async(movieName) => {
     const movieData = this.props.movieData
 
     let movieItem = movieData.map((movie, i) => {
-    console.log('movie name!!!!', movie.name)
       return(
         <List key={i}>
           { movie.picture ? (
@@ -38,13 +37,12 @@ addToList = async(movieName) => {
           :
           (
             <ListItem itemDivider>
-              <Text>No Image Available</Text>
+              <Text style={styles.textStyle}>No Image Available</Text>
             </ListItem>
           )
-
           }
           <ListItem itemDivider>
-            <Text>Title:</Text>
+            <Text style={styles.textStyle}>Title:</Text>
           </ListItem>
           <ListItem>
             <View>
@@ -55,26 +53,28 @@ addToList = async(movieName) => {
             </View>
           </ListItem>
           <ListItem itemDivider>
-            <Text>Available Here:</Text>
+            <Text style={styles.textStyle}>Available Here:</Text>
           </ListItem>
           {movie.locations.map((location, i )=> {
-            console.log(location.display_name);
             return(
               <ListItem key={i}>
                 <Text>{location.display_name}</Text>
               </ListItem>
             )
           })}
-
         </List>
     )})
 
     return (
       <Content>
         {movieItem}
-
       </Content>
 
     );
   }
 }
+const styles = StyleSheet.create({
+  textStyle: {
+    fontWeight: "bold"
+  }
+})
