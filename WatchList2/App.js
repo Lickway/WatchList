@@ -22,7 +22,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 
-console.ignoredYellowBox = ['Remote debugger'];
+console.ignoredYellowBox = [true, "Class"];
 
 const App = StackNavigator({
 
